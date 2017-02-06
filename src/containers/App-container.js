@@ -9,11 +9,6 @@ import { GET_ALL_RECIPES_URL } from '../constants/api-url';
 class App extends Component {
   constructor(props, context) {
     super(props, context);
-
-    // this.state = {
-    //   // recipes: [],
-    //   recipes: {},
-    // };
   }
 
 
