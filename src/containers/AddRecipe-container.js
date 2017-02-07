@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as recipeActions from '../actions/recipeActions';
 import RecipeForm from '../components/RecipeForm/RecipeForm';
-// import GetRandomInt from '../components/GetRandomInt/GetRandomInt';
+import GetRandomInt from '../components/GetRandomInt/GetRandomInt';
 import { Link } from 'react-router';
 
 class AddRecipeContainer extends React.Component {
@@ -25,13 +25,7 @@ class AddRecipeContainer extends React.Component {
     const field = event.target.name;
     let recipe = this.state.recipe;
     recipe[field] = event.target.value;
-
-    const getRandomInt = (min, max) => {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
-
-    let randomNumber = getRandomInt(1000, 1000);
-    // let randomNumber = 123121;
+    const randomNumber = GetRandomInt(1000, 10000);
     recipe['id'] = `${event.target.value}-${randomNumber}`;
     return this.setState({recipe: recipe});
   }
