@@ -7,8 +7,16 @@ export default function recipeReducer(state = [], action) {
         ...state,
         Object.assign({}, action.payload.recipe)
       ];
+
+    case types.ACTION_TYPES.UPDATE_RECIPE:
+      return [
+        ...state.filter(recipe => recipe.id !== action.payload.recipe.id),
+        Object.assign({}, action.payload.recipe)
+      ];
+
     case types.ACTION_TYPES.LOAD_RECIPES_SUCCESS:
       return action.payload.recipes;
+
     default:
       return state;
   }

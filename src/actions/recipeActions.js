@@ -11,6 +11,15 @@ export function createRecipe(recipe) {
   };
 }
 
+export function updateRecipe(recipe) {
+  return {
+    type: types.ACTION_TYPES.UPDATE_RECIPE,
+    payload: {
+      recipe
+    }
+  };
+}
+
 export function loadRecipesSuccess(recipes) {
   return {
     type: types.ACTION_TYPES.LOAD_RECIPES_SUCCESS,
