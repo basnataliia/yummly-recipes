@@ -8,7 +8,11 @@ import { loadFlavours } from './actions/flavourActions';
 import AppContainer from './containers/App-container';
 import AddRecipeContainer from './containers/AddRecipe-container';
 import ManageRecipeContainer from './containers/ManageRecipe-container';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.css';
+
+injectTapEventPlugin();
 
 const store = configureStore();
 store.dispatch(loadRecipes());
@@ -16,12 +20,13 @@ store.dispatch(loadFlavours());
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path='/' component={AppContainer}/>
-      <Route path='add-recipe' component={AddRecipeContainer} />
-      <Route path='recipes/:id' component={ManageRecipeContainer} />
-
-    </Router>
+    <MuiThemeProvider>
+      <Router history={browserHistory}>
+        <Route path='/' component={AppContainer}/>
+        <Route path='add-recipe' component={AddRecipeContainer} />
+        <Route path='recipes/:id' component={ManageRecipeContainer} />
+      </Router>
+     </MuiThemeProvider>
   </Provider>,
   document.getElementById('root')
 );

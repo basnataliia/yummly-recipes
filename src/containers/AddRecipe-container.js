@@ -17,6 +17,7 @@ class AddRecipeContainer extends React.Component {
 
     this.updateRecipeState = this.updateRecipeState.bind(this);
     this.createRecipe = this.createRecipe.bind(this);
+    this.onStartClick = this.onStartClick.bind(this);
   }
 
 
@@ -36,6 +37,10 @@ class AddRecipeContainer extends React.Component {
     this.props.actions.createRecipe(this.state.recipe);
   }
 
+  onStartClick(value, name) {
+    console.log('flavour valus is:', value, 'name is:', name);
+  }
+
   render() {
     return (
       <div>
@@ -47,13 +52,14 @@ class AddRecipeContainer extends React.Component {
             onSave={this.createRecipe}
             recipe={this.state.recipe}
             errors={this.state.errors}
+            onStartClick={this.onStartClick}
             />
       </div>
     );
   }
 }
 
-AddRecipeContainer.PropTypes = {
+AddRecipeContainer.propTypes = {
   recipes: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   flavours: PropTypes.array.isRequired

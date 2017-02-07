@@ -1,0 +1,18 @@
+.flavourLevel .fa {
+  font-size:24px;
+  margin-right:2px;
+}
+
+.flavourName{
+  display: inline-block;
+  margin-right: 10px;
+  width: 50px;
+}
+
+.flavourLevel .fa.fa-star-o {
+  color: #BDBDBD;
+}
+
+.flavourLevel .fa.fa-star {
+  color: #FFC107;
+}

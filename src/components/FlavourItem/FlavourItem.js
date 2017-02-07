@@ -1,21 +1,26 @@
 import React, {PropTypes} from 'react';
-// import { Link } from 'react-router';
+import Rating from 'react-rating';
+import './FlavourItem.css';
 
-const FlavourItem = ({flavour}) => {
+
+const FlavourItem = ({flavour, flavourId, onStartClick}) => {
   return (
     <div className="flavourLevel">
-      {flavour.name}
-        <input type="radio" name="flavourLevel" value="0"/>0
-        <input type="radio" name="flavourLevel" value="0.2"/>0.2
-        <input type="radio" name="flavourLevel" value="0.5"/>0.5
-        <input type="radio" name="flavourLevel" value="0.7"/>0.7
-        <input type="radio" name="flavourLevel" value="1"/>1
+      <span className="flavourName">{flavour.name}</span>
+      <Rating
+        empty={"fa fa-star-o"}
+        full={"fa fa-star"}
+        placeholder={flavour.name}
+        onClick={(rate) => onStartClick(rate, flavour.name)}
+        />
     </div>
   );
 };
 
-FlavourItem.PropTypes = {
-  flavour: PropTypes.object.isRequired
+FlavourItem.propTypes = {
+  flavour: PropTypes.object.isRequired,
+  onStartClick: PropTypes.func,
+  flavourId: PropTypes.string,
 };
 
 export default FlavourItem;
