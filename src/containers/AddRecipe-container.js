@@ -6,13 +6,27 @@ import RecipeForm from '../components/RecipeForm/RecipeForm';
 import GetRandomInt from '../components/GetRandomInt/GetRandomInt';
 import { Link } from 'react-router';
 
+const flavoursObject = {
+  bitter: 0,
+  meaty: 0,
+  piquant: 0,
+  salty: 0,
+  sour: 0,
+  sweet: 0
+};
+
 class AddRecipeContainer extends React.Component {
+
   constructor(props,context) {
     super(props, context);
 
     this.state = {
-      recipe: Object.assign({}, this.props.recipe),
-      errors: {}
+      recipe: Object.assign(
+        {},
+        this.props.recipe
+      ),
+      errors: {},
+      recipeFlavoursTest: [],
     };
 
     this.updateRecipeState = this.updateRecipeState.bind(this);
@@ -28,6 +42,7 @@ class AddRecipeContainer extends React.Component {
     recipe[field] = event.target.value;
     const randomNumber = GetRandomInt(1000, 10000);
     recipe['id'] = `${event.target.value}-${randomNumber}`;
+    recipe['flavors'] = flavoursObject;
     return this.setState({recipe: recipe});
   }
 
@@ -38,7 +53,7 @@ class AddRecipeContainer extends React.Component {
   }
 
   onStartClick(value, name) {
-    console.log('flavour valus is:', value, 'name is:', name);
+    return flavoursObject[name] = value;
   }
 
   render() {
