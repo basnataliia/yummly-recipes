@@ -26,15 +26,21 @@ class AddRecipeContainer extends React.Component {
         this.props.recipe
       ),
       errors: {},
-      recipeFlavoursTest: [],
+      // recipeFlavoursTest: {
+      //   bitter: 0,
+      //   meaty: 0,
+      //   piquant: 0,
+      //   salty: 0,
+      //   sour: 0,
+      //   sweet: 0
+      // },
     };
 
     this.updateRecipeState = this.updateRecipeState.bind(this);
     this.createRecipe = this.createRecipe.bind(this);
     this.onStartClick = this.onStartClick.bind(this);
+    // this.updateFlavorsState = this.updateFlavorsState.bind(this);
   }
-
-
 
   updateRecipeState(event) {
     const field = event.target.name;
@@ -47,13 +53,32 @@ class AddRecipeContainer extends React.Component {
   }
 
   createRecipe(event) {
-    //this.props.dispatch(recipeActions.createRecipe(this.state.recipe));
     event.preventDefault();
     this.props.actions.createRecipe(this.state.recipe);
+    this.context.router.push('/');
   }
 
+  // updateFlavorsState(obj) {
+  //   var testval = {...this.state.recipeFlavoursTest, ...{flavoursObject: obj}};
+  //   return this.setState({
+  //     recipeFlavoursTest: testval
+  //   });
+  //
+  // }
+
   onStartClick(value, name) {
-    return flavoursObject[name] = value;
+    //  return flavoursObject[name] = value;
+
+    return {...flavoursObject, ...{flavoursObjectT: flavoursObject[name] = value}};
+    // var testVal = {
+    //   bitter: 5,
+    //   meaty: 0,
+    //   piquant: 0,
+    //   salty: 2,
+    //   sour: 0,
+    //   sweet: 1
+    // }
+    // return this.setState({recipeFlavoursTest: testVal});
   }
 
   render() {
@@ -78,6 +103,10 @@ AddRecipeContainer.propTypes = {
   recipes: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   flavours: PropTypes.array.isRequired
+};
+
+AddRecipeContainer.contextTypes = {
+  router: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
