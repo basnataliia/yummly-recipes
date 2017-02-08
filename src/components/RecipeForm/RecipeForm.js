@@ -7,7 +7,7 @@ const RecipeForm = ({recipe, allFlavours, onSave, onChange, loading, errors, onS
     <form>
       <TextInput
         name="recipeName"
-        lable="Name"
+        label="Name"
         value={recipe.recipeName}
         onChange={onChange}
         error={errors.recipeName}/>
