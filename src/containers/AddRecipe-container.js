@@ -60,7 +60,6 @@ class AddRecipeContainer extends React.Component {
         <h2>Add Recipe</h2>
           <Link to={'/'}>All Recipes</Link>
           <RecipeForm
-
             allFlavours={this.props.flavours}
             onChange={this.updateRecipeState}
             onSave={this.createRecipe}
