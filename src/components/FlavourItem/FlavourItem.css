@@ -1,24 +1,5 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-/*.flavourLevel .fa {
-  font-size:24px;
-  margin-right:2px;
-}
-
-.flavourName{
-  display: inline-block;
-  margin-right: 10px;
-  width: 50px;
-}
-
-.flavourLevel .fa.fa-star-o {
-  color: #BDBDBD;
-}
-
-.flavourLevel .fa.fa-star {
-  color: #FFC107;
-}*/
-
 .flavourLevel{
   display: flex;
   align-items: center;
@@ -50,14 +31,13 @@
 }
 
 .rating > label {
-  color: #ddd;
+  color: #E0E0E0;
   float: right;
 }
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
 .rating:not(:checked) > label:hover ~ label {
-  /*color: #FFD700;*/
   color: #FFC107;
 }
 

@@ -12,7 +12,7 @@ const RecipeForm = ({recipe, allFlavours, onSave, onChange, loading, errors, onS
         onChange={onChange}
         error={errors.recipeName}/>
 
-      <FlavourList allFlavours={allFlavours} onStartClick={onStartClick}/>
+      <FlavourList allFlavours={allFlavours} recipe={recipe} onStartClick={onStartClick}/>
 
       <input
           type="submit"

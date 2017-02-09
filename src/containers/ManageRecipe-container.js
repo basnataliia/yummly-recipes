@@ -45,8 +45,19 @@ ManageRecipeContainer.propTypes = {
   flavours: PropTypes.array.isRequired
 };
 
+function getRecipeById(recipes, id) {
+  const recipe = recipes.filter(recipe => recipe.id === id);
+  if(recipe) return recipe[0];
+  return null;
+}
+
 function mapStateToProps(state, ownProps) {
+  const recipeId = ownProps.params.id; //form the path `/recipes/:id`
   let recipe = {id: '', recipeName: ''};
+
+  if(recipeId) {
+    recipe = getRecipeById(state.recipes, recipeId);
+  }
 
   return {
     recipe: recipe,
