@@ -1,18 +1,19 @@
 import React, {PropTypes} from 'react';
 import RecipeItem from '../RecipeItem/RecipeItem';
 
-const RecipeList = ({recipes}) => {
+const RecipeList = ({recipes, deleteRecipe}) => {
   return (
     <div>
       {recipes.map(recipe =>
-        <RecipeItem key={recipe.id} recipe={recipe} />
+        <RecipeItem key={recipe.id} recipe={recipe} deleteRecipe={deleteRecipe} />
       )}
     </div>
   );
 };
 
-RecipeList.PropTypes = {
-  recipes: PropTypes.array.isRequired
+RecipeList.propTypes = {
+  recipes: PropTypes.array.isRequired,
+  deleteRecipe: PropTypes.func.isRequired,
 };
 
 export default RecipeList;
