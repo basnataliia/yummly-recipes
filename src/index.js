@@ -24,7 +24,7 @@ ReactDOM.render(
       <Router history={browserHistory}>
         <Route path='/' component={AppContainer}/>
         <Route path='add-recipe' component={AddRecipeContainer} />
-        <Route path='recipes/:id' component={ManageRecipeContainer} />
+      <Route path='recipes/:id' component={ManageRecipeContainer} />
       </Router>
      </MuiThemeProvider>
   </Provider>,

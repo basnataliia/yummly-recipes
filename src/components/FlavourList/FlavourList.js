@@ -25,18 +25,6 @@ const FlavourList = ({allFlavours, onStartClick, recipe, isAddNew}) => {
       );
     }
   }
-  // if(!recipe.id){
-  //   return null;
-  // }
-  // else{
-  //   return (
-  //     <div>
-  //       {allFlavours.map(flavour =>
-  //         <FlavourItem key={flavour.id} flavourId={flavour.id} flavour={flavour} recipe={recipe} onStartClick={onStartClick} />
-  //       )}
-  //     </div>
-  //   );
-  // };
 }
 
 FlavourList.propTypes = {
