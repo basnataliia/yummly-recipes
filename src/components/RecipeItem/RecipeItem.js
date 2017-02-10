@@ -13,7 +13,7 @@ const RecipeItem = ({recipe}) => {
   );
 };
 
-RecipeItem.PropTypes = {
+RecipeItem.propTypes = {
   recipe: PropTypes.object.isRequired
 };
 

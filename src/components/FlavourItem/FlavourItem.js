@@ -47,28 +47,36 @@ import './FlavourItem.css';
       }
     }
 
+
 render() {
+  let isDisabled = false;
+  let disabledRating = "";
+  if(this.props.isViewMode){
+    isDisabled = true;
+    disabledRating = "disabledRating";
+  }
+
   return (
       <div className="flavourLevel">
          <div className="flavourName">{this.props.flavour.name}</div>
           <div className="rating">
-
-            <input type="radio" id={"star5-" + this.props.flavourId} name={this.props.flavourId} defaultChecked={this.state.StarFive} value="0.9" onClick={() => this.props.onStartClick(0.9, this.props.flavour.name)}/>
+            <input type="radio" id={"star5-" + this.props.flavourId} name={this.props.flavourId} disabled={isDisabled} defaultChecked={this.state.StarFive} value="0.9" onClick={() => this.props.onStartClick(0.9, this.props.flavour.name)}/>
             <label className="full" htmlFor={"star5-" + this.props.flavourId} title="5 stars" name={this.props.flavourId}></label>
 
-            <input type="radio" id={"star4-" + this.props.flavourId} name={this.props.flavourId} defaultChecked={this.state.StarFour} value="0.7" onClick={() => this.props.onStartClick(0.7, this.props.flavour.name)}/>
+            <input type="radio" id={"star4-" + this.props.flavourId} name={this.props.flavourId} disabled={isDisabled}  defaultChecked={this.state.StarFour} value="0.7" onClick={() => this.props.onStartClick(0.7, this.props.flavour.name)}/>
             <label className="full" htmlFor={"star4-" + this.props.flavourId} title="4 stars" name={this.props.flavourId}></label>
 
-            <input type="radio" id={"star3-" + this.props.flavourId} name={this.props.flavourId} defaultChecked={this.state.StarThree} value="0.5" onClick={() => this.props.onStartClick(0.5, this.props.flavour.name)}/>
+            <input type="radio" id={"star3-" + this.props.flavourId} name={this.props.flavourId} disabled={isDisabled}  defaultChecked={this.state.StarThree} value="0.5" onClick={() => this.props.onStartClick(0.5, this.props.flavour.name)}/>
             <label className="full" htmlFor={"star3-" + this.props.flavourId} title="3 stars" name={this.props.flavourId}></label>
 
-            <input type="radio" id={"star2-" + this.props.flavourId} name={this.props.flavourId} defaultChecked={this.state.StarTwo} value="0.3" onClick={() => this.props.onStartClick(0.3, this.props.flavour.name)}/>
+            <input type="radio" id={"star2-" + this.props.flavourId} name={this.props.flavourId} disabled={isDisabled}  defaultChecked={this.state.StarTwo} value="0.3" onClick={() => this.props.onStartClick(0.3, this.props.flavour.name)}/>
             <label className="full" htmlFor={"star2-" + this.props.flavourId} title="2 stars" name={this.props.flavourId}></label>
 
-            <input type="radio" id={"star1-" + this.props.flavourId} name={this.props.flavourId} defaultChecked={this.state.StarOne} value="0.1" onClick={() => this.props.onStartClick(0.1, this.props.flavour.name)}/>
+            <input type="radio" id={"star1-" + this.props.flavourId} name={this.props.flavourId} disabled={isDisabled}  defaultChecked={this.state.StarOne} value="0.1" onClick={() => this.props.onStartClick(0.1, this.props.flavour.name)}/>
             <label className="full" htmlFor={"star1-" + this.props.flavourId} title="1 star" name={this.props.flavourId}></label>
 
         </div>
+        <div className={disabledRating}></div>
       </div>
     );
   };

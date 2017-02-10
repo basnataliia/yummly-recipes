@@ -41,9 +41,16 @@
   color: #FFC107;
 }
 
-/*.rating > input:checked + label:hover,
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label,
-.rating > input:checked ~ label:hover ~ label {
-  color: #FFED85;
+.disabledRating{
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+}
+
+/*.rating > input:disabled ~ label,*/
+/*.rating > input:disabled ~ label:hover
+{
+  color: #E0E0E0 !important;
 }*/

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as recipeActions from '../actions/recipeActions';
 import RecipeForm from '../components/RecipeForm/RecipeForm';
+import RecipeViewDetails from '../components/RecipeViewDetails/RecipeViewDetails';
 import RemoveByKey from '../components/RemoveByKey/RemoveByKey';
 
 class ManageRecipeContainer extends React.Component {
@@ -62,7 +63,7 @@ class ManageRecipeContainer extends React.Component {
     }
 
   render() {
-    if(this.props.location.state.updateRecipeView){
+    if(this.props.location.state.updateRecipeView) {
       return (
         <div>
           <h2>Update recipe</h2>
@@ -77,9 +78,16 @@ class ManageRecipeContainer extends React.Component {
             />
         </div>
       );}
-    else{
+    else {
       return (
-        <div>View Recipe!!!</div>
+        <div>
+         <div>View Recipe!!!</div>
+       <RecipeViewDetails
+          recipe={this.state.recipe}
+          allFlavours={this.props.flavours}
+          isAddNew={this.isAddNew}
+         />
+       </div>
       )
     }
   }

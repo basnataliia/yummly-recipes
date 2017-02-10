@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import TextInput from '../TextInput/TextInput';
 import FlavourList from '../FlavourList/FlavourList';
 
@@ -24,14 +24,14 @@ const RecipeForm = ({recipe, allFlavours, onSave, onChange, loading, errors, onS
 };
 
 RecipeForm.propTypes = {
-  recipe: React.PropTypes.object.isRequired,
-  allFlavours: React.PropTypes.array.isRequired,
-  onSave: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  loading: React.PropTypes.bool,
-  isAddNew: React.PropTypes.bool,
-  errors: React.PropTypes.object,
-  onStartClick: React.PropTypes.func
+  recipe: PropTypes.object.isRequired,
+  allFlavours: PropTypes.array.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  isAddNew: PropTypes.bool,
+  errors: PropTypes.object,
+  onStartClick: PropTypes.func
 };
 
 export default RecipeForm;
