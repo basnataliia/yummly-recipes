@@ -13,16 +13,75 @@ class ManageRecipeContainer extends React.Component {
       errors: {}
     };
 
+    this.flavoursObject = this.state.recipe.flavors;
+    console.log('this.props.recipe', this.props.recipe);
+    console.log('this.flavoursObject ', this.flavoursObject );
+
     this.updateRecipeState = this.updateRecipeState.bind(this);
+    this.updateRecipe = this.updateRecipe.bind(this);
+    this.onStartClick = this.onStartClick.bind(this);
   }
 
   updateRecipeState(event) {
+    console.log('this.props.recipe', this.props.recipe);
+
     const field = event.target.name;
     let recipe = this.state.recipe;
     recipe[field] = event.target.value;
+
+    // recipe['flavors'] = this.flavoursObject;
+
     return this.setState({recipe: recipe});
   }
 
+  updateRecipe(event) {
+    event.preventDefault();
+    this.props.actions.updateRecipe(this.state.recipe);
+    this.context.router.push('/');
+  }
+
+    onStartClick(value, name) {
+      let obj = {};
+      obj[name] = value;
+
+
+      // Object.filter = function( obj, predicate) {
+      //     var result = {}, key;
+      //
+      //     for (key in obj) {
+      //         if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
+      //             result[key] = obj[key];
+      //         }
+      //     }
+      //
+      //     return result;
+      // };
+      //
+      // var filtered = Object.filter(this.flavoursObject, );
+      // console.log('filtered', filtered);
+
+      // recipe['flavors'] = obj;
+      // this.flavoursObject[name] = value;
+      // console.log('this.flavoursObject', this.flavoursObject);
+      // Object.filter = function (this.flavoursObject, obj) {
+      //
+      // }
+
+      // ...this.flavoursObject.filter(recipe => recipe.id !== obj.id)
+      // Object.assign({},this.flavoursObject, obj)
+
+
+      // console.log('star valius is:', value, name);
+
+
+
+      let recipe = this.state.recipe;
+      // let obj = recipe.flavors;
+      // obj[name] = value;
+      recipe['flavors'] = obj;
+      //
+      return this.setState({recipe: recipe});
+    }
 
   render() {
     return (
@@ -31,7 +90,9 @@ class ManageRecipeContainer extends React.Component {
         <RecipeForm
           allFlavours={this.props.flavours}
           onChange={this.updateRecipeState}
+          onSave={this.updateRecipe}
           recipe={this.state.recipe}
+          onStartClick={this.onStartClick}
           errors={this.state.errors}
           />
       </div>
@@ -43,6 +104,10 @@ ManageRecipeContainer.propTypes = {
   recipe: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   flavours: PropTypes.array.isRequired
+};
+
+ManageRecipeContainer.contextTypes = {
+  router: PropTypes.object
 };
 
 function getRecipeById(recipes, id) {

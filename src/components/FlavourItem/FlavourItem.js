@@ -6,8 +6,6 @@ import './FlavourItem.css';
     constructor(props){
       super(props);
 
-      console.log('this.props:', this.props);
-
       this.state = {
           StarOne: false,
           StarTwo: false,
@@ -23,8 +21,6 @@ import './FlavourItem.css';
          if(Object.keys(flavors).length !== 0 && flavors.constructor === Object){
            for(let property in flavors) {
              if(property === this.props.flavour.name) {
-               console.log('propert value is:', property, ': ', flavors[property]);
-
                let flavVal = this.props.recipe.flavors[property];
 
                if(flavVal > 0 && flavVal < 0.2) {
