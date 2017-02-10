@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as recipeActions from '../actions/recipeActions';
 import RecipeForm from '../components/RecipeForm/RecipeForm';
+import RemoveByKey from '../components/RemoveByKey/RemoveByKey';
 
 class ManageRecipeContainer extends React.Component {
   constructor(props, context) {
@@ -14,23 +15,15 @@ class ManageRecipeContainer extends React.Component {
     };
 
     this.flavoursObject = this.state.recipe.flavors;
-    console.log('this.props.recipe', this.props.recipe);
-    console.log('this.flavoursObject ', this.flavoursObject );
-
     this.updateRecipeState = this.updateRecipeState.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
     this.onStartClick = this.onStartClick.bind(this);
   }
 
   updateRecipeState(event) {
-    console.log('this.props.recipe', this.props.recipe);
-
     const field = event.target.name;
     let recipe = this.state.recipe;
     recipe[field] = event.target.value;
-
-    // recipe['flavors'] = this.flavoursObject;
-
     return this.setState({recipe: recipe});
   }
 
@@ -44,42 +37,23 @@ class ManageRecipeContainer extends React.Component {
       let obj = {};
       obj[name] = value;
 
-
-      // Object.filter = function( obj, predicate) {
-      //     var result = {}, key;
-      //
-      //     for (key in obj) {
-      //         if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
-      //             result[key] = obj[key];
-      //         }
-      //     }
-      //
-      //     return result;
-      // };
-      //
-      // var filtered = Object.filter(this.flavoursObject, );
-      // console.log('filtered', filtered);
-
-      // recipe['flavors'] = obj;
-      // this.flavoursObject[name] = value;
-      // console.log('this.flavoursObject', this.flavoursObject);
-      // Object.filter = function (this.flavoursObject, obj) {
-      //
+      // function removeByKey (myObj, deleteKey) {
+      //   return Object.keys(myObj)
+      //     .filter(key => key !== deleteKey)
+      //     .reduce((result, current) => {
+      //       result[current] = myObj[current];
+      //       return result;
+      //   }, {});
       // }
 
-      // ...this.flavoursObject.filter(recipe => recipe.id !== obj.id)
-      // Object.assign({},this.flavoursObject, obj)
-
-
-      // console.log('star valius is:', value, name);
-
-
-
       let recipe = this.state.recipe;
-      // let obj = recipe.flavors;
-      // obj[name] = value;
-      recipe['flavors'] = obj;
-      //
+      let flavoursWithoutKey = {};
+      if(recipe.flavors) {
+        flavoursWithoutKey = RemoveByKey(recipe.flavors, name);
+      }
+
+      let updatedFlavorsObj = Object.assign({}, flavoursWithoutKey, obj)
+      recipe['flavors'] = updatedFlavorsObj;
       return this.setState({recipe: recipe});
     }
 
