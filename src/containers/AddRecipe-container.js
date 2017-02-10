@@ -29,6 +29,7 @@ class AddRecipeContainer extends React.Component {
     };
 
     this.updateRecipeState = this.updateRecipeState.bind(this);
+    this.isAddNew = true;
     this.createRecipe = this.createRecipe.bind(this);
     this.onStartClick = this.onStartClick.bind(this);
   }
@@ -65,6 +66,7 @@ class AddRecipeContainer extends React.Component {
             onSave={this.createRecipe}
             recipe={this.state.recipe}
             errors={this.state.errors}
+            isAddNew={this.isAddNew}
             onStartClick={this.onStartClick}
             />
       </div>

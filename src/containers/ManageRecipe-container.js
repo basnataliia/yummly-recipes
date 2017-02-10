@@ -11,13 +11,24 @@ class ManageRecipeContainer extends React.Component {
 
     this.state = {
       recipe: Object.assign({}, this.props.recipe),
+      flavours:  Object.assign({}, this.props.flavours),
       errors: {}
     };
 
+    console.log('this.props.recipe', this.props.recipe);
+
     this.flavoursObject = this.state.recipe.flavors;
+    this.isAddNew = false;
     this.updateRecipeState = this.updateRecipeState.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
     this.onStartClick = this.onStartClick.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.recipe.id != nextProps.recipe.id) {
+      this.setState({recipe: Object.assign({}, nextProps.recipe)});
+      this.setState({flavours: Object.assign({}, nextProps.flavours)});
+    }
   }
 
   updateRecipeState(event) {
@@ -36,15 +47,6 @@ class ManageRecipeContainer extends React.Component {
     onStartClick(value, name) {
       let obj = {};
       obj[name] = value;
-
-      // function removeByKey (myObj, deleteKey) {
-      //   return Object.keys(myObj)
-      //     .filter(key => key !== deleteKey)
-      //     .reduce((result, current) => {
-      //       result[current] = myObj[current];
-      //       return result;
-      //   }, {});
-      // }
 
       let recipe = this.state.recipe;
       let flavoursWithoutKey = {};
@@ -67,6 +69,7 @@ class ManageRecipeContainer extends React.Component {
           onSave={this.updateRecipe}
           recipe={this.state.recipe}
           onStartClick={this.onStartClick}
+          isAddNew={this.isAddNew}
           errors={this.state.errors}
           />
       </div>
@@ -91,10 +94,11 @@ function getRecipeById(recipes, id) {
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log('state', state);
   const recipeId = ownProps.params.id; //form the path `/recipes/:id`
   let recipe = {id: '', recipeName: ''};
 
-  if(recipeId) {
+  if(recipeId && state.recipes.length > 0) {
     recipe = getRecipeById(state.recipes, recipeId);
   }
 
