@@ -4,7 +4,7 @@ import flavours from './flavourReducer';
 
 const rootReducer = combineReducers({
   recipes,
-  flavours
+  flavours,
 });
 
 export default rootReducer;

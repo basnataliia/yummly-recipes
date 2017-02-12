@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import FlavourList from '../FlavourList/FlavourList';
 
-function onStartClick(){
-  console.log('star is cliked');
-}
+
 
 const RecipeViewDetails = ({recipe, allFlavours, isAddNew}) => {
-    console.log(recipe);
+    function onStartClick(){
+      console.log('dd');
+      // return;
+    }
   return (
 
     <div>
-      <h2>{recipe.recipeName}</h2>
+      <h2>{recipe.name}</h2>
       <FlavourList
         allFlavours={allFlavours}
         recipe={recipe}
@@ -20,6 +21,12 @@ const RecipeViewDetails = ({recipe, allFlavours, isAddNew}) => {
         />
     </div>
   );
+};
+
+RecipeViewDetails.propTypes = {
+  recipe: PropTypes.object.isRequired,
+  allFlavours: PropTypes.array.isRequired,
+  isAddNew: PropTypes.bool.isRequired,
 };
 
 export default RecipeViewDetails;

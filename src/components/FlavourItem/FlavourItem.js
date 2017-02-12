@@ -20,7 +20,7 @@ import './FlavourItem.css';
        if(flavors !== null && flavors !== undefined){
          if(Object.keys(flavors).length !== 0 && flavors.constructor === Object){
            for(let property in flavors) {
-             if(property === this.props.flavour.name) {
+             if(property.toLowerCase() === this.props.flavour.name) {
                let flavVal = this.props.recipe.flavors[property];
 
                if(flavVal > 0 && flavVal < 0.2) {

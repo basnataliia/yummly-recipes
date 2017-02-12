@@ -5,6 +5,8 @@ import * as recipeActions from '../actions/recipeActions';
 import RecipeForm from '../components/RecipeForm/RecipeForm';
 import RecipeViewDetails from '../components/RecipeViewDetails/RecipeViewDetails';
 import RemoveByKey from '../components/RemoveByKey/RemoveByKey';
+import { GET_RECIPE_BY_ID_URL, APP_ID, APP_KEY } from '../constants/api-url';
+import $ from 'jquery';
 
 class ManageRecipeContainer extends React.Component {
   constructor(props, context) {
@@ -13,6 +15,7 @@ class ManageRecipeContainer extends React.Component {
     this.state = {
       recipe: Object.assign({}, this.props.recipe),
       flavours:  Object.assign({}, this.props.flavours),
+      recipeFullDesc: {},
       errors: {}
     };
 
@@ -25,12 +28,23 @@ class ManageRecipeContainer extends React.Component {
     this.onStartClick = this.onStartClick.bind(this);
   }
 
+  componentWillMount() {
+    let recipeId = this.props.params.id;
+		$.get(GET_RECIPE_BY_ID_URL + `${recipeId}?_app_id=${APP_ID}&_app_key=${APP_KEY}`)
+		.then(response => {
+	      this.setState({
+	        recipeFullDesc: response
+	      });
+	    });
+	}
+
   componentWillReceiveProps(nextProps) {
     if(this.props.recipe.id !== nextProps.recipe.id) {
       this.setState({recipe: Object.assign({}, nextProps.recipe)});
       this.setState({flavours: Object.assign({}, nextProps.flavours)});
     }
   }
+
 
   updateRecipeState(event) {
     const field = event.target.name;
@@ -56,6 +70,7 @@ class ManageRecipeContainer extends React.Component {
       }
 
       let updatedFlavorsObj = Object.assign({}, flavoursWithoutKey, obj)
+      // let updatedFlavorsObj = Object.assign({}, recipe.flavors, obj)
       recipe['flavors'] = updatedFlavorsObj;
       return this.setState({recipe: recipe});
     }
@@ -77,11 +92,16 @@ class ManageRecipeContainer extends React.Component {
         </div>
       );}
     else {
+      // if(!this.state.recipeFullDesc.length){
+      // if(Object.keys(this.state.recipeFullDesc).length === 0 ){
+      if(!this.state.recipeFullDesc){
+    		return null;
+    	}
       return (
         <div>
          <div>View Recipe!!!</div>
          <RecipeViewDetails
-            recipe={this.state.recipe}
+            recipe={this.state.recipeFullDesc}
             allFlavours={this.props.flavours}
             isAddNew={this.isAddNew}
          />
@@ -123,8 +143,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(recipeActions, dispatch)
+    actions: bindActionCreators(recipeActions, dispatch),
   };
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageRecipeContainer);

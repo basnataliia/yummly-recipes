@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   deleteRecipe(recipeId) {
-    console.log(recipeId);
     this.props.actions.deleteRecipe(recipeId);
   }
 
