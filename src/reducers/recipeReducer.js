@@ -15,10 +15,6 @@ export default function recipeReducer(state = [], action) {
       ];
 
     case types.ACTION_TYPES.DELETE_RECIPE:
-      // return [
-      //   ...state.filter(recipe => recipe.id !== action.payload.recipeId),
-      //   Object.assign({})
-      // ];
       return state.filter(recipe => recipe.id !== action.payload.recipeId);
 
     case types.ACTION_TYPES.LOAD_RECIPES_SUCCESS:
