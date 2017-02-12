@@ -16,10 +16,8 @@ class ManageRecipeContainer extends React.Component {
       errors: {}
     };
 
-    console.log('this.props.recipe', this.props.recipe);
 
     this.updateRecipeView = false;
-
     this.flavoursObject = this.state.recipe.flavors;
     this.isAddNew = false;
     this.updateRecipeState = this.updateRecipeState.bind(this);
@@ -82,10 +80,10 @@ class ManageRecipeContainer extends React.Component {
       return (
         <div>
          <div>View Recipe!!!</div>
-       <RecipeViewDetails
-          recipe={this.state.recipe}
-          allFlavours={this.props.flavours}
-          isAddNew={this.isAddNew}
+         <RecipeViewDetails
+            recipe={this.state.recipe}
+            allFlavours={this.props.flavours}
+            isAddNew={this.isAddNew}
          />
        </div>
       )

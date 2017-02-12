@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as recipeActions from '../actions/recipeActions';
 import RecipeList from '../components/RecipeList/RecipeList';
 import { Link } from 'react-router';
 
@@ -20,8 +22,9 @@ class App extends Component {
 
   }
 
-  deleteRecipe(recipe) {
-    console.log(recipe);
+  deleteRecipe(recipeId) {
+    console.log(recipeId);
+    this.props.actions.deleteRecipe(recipeId);
   }
 
   render() {
@@ -35,10 +38,17 @@ class App extends Component {
   }
 }
 
-// export default App;
+
 function mapStateToProps(state, ownProps) {
   return {
     recipes: state.recipes
   };
 }
-export default connect(mapStateToProps)(App);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(recipeActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

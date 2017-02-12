@@ -20,6 +20,15 @@ export function updateRecipe(recipe) {
   };
 }
 
+export function deleteRecipe(recipeId) {
+  return {
+    type: types.ACTION_TYPES.DELETE_RECIPE,
+    payload: {
+      recipeId
+    }
+  };
+}
+
 export function loadRecipesSuccess(recipes) {
   return {
     type: types.ACTION_TYPES.LOAD_RECIPES_SUCCESS,
