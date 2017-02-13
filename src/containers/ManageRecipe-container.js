@@ -16,6 +16,7 @@ class ManageRecipeContainer extends React.Component {
       recipe: Object.assign({}, this.props.recipe),
       flavours:  Object.assign({}, this.props.flavours),
       recipeFullDesc: {},
+      recipes: Object.assign({}, this.props.recipes),
       // recipeFullDesc: Object.assign({}, this.props.recipeFullDesc),
       errors: {}
     };
@@ -45,6 +46,7 @@ class ManageRecipeContainer extends React.Component {
     if(this.props.recipe.id !== nextProps.recipe.id) {
       this.setState({recipe: Object.assign({}, nextProps.recipe)});
       this.setState({flavours: Object.assign({}, nextProps.flavours)});
+      this.setState({recipes: Object.assign({}, nextProps.recipes)});
     }
   }
 
@@ -126,7 +128,7 @@ ManageRecipeContainer.contextTypes = {
 
 function getRecipeById(recipes, id) {
   const recipe = recipes.filter(recipe => recipe.id === id);
-  if(recipe) return recipe[0];
+  if(recipe && recipe.length > 0) return recipe[0];
   return null;
 }
 
@@ -140,7 +142,8 @@ function mapStateToProps(state, ownProps) {
 
   return {
     recipe: recipe,
-    flavours: state.flavours
+    flavours: state.flavours,
+    recipes: state.recipes,
   };
 }
 

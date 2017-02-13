@@ -5,8 +5,7 @@ import * as recipeActions from '../actions/recipeActions';
 import RecipeList from '../components/RecipeList/RecipeList';
 import { Link } from 'react-router';
 import RecipeSearch from '../components/RecipeSearch/RecipeSearch';
-import { SEARCH_RECIPE_URL } from '../constants/api-url';
-import $ from 'jquery';
+
 
 class App extends Component {
 
