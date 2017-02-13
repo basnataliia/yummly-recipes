@@ -16,6 +16,7 @@ class ManageRecipeContainer extends React.Component {
       recipe: Object.assign({}, this.props.recipe),
       flavours:  Object.assign({}, this.props.flavours),
       recipeFullDesc: {},
+      // recipeFullDesc: Object.assign({}, this.props.recipeFullDesc),
       errors: {}
     };
 
@@ -35,7 +36,9 @@ class ManageRecipeContainer extends React.Component {
 	      this.setState({
 	        recipeFullDesc: response
 	      });
-	    });
+	    }).catch(error => {
+        throw(error);
+      });
 	}
 
   componentWillReceiveProps(nextProps) {

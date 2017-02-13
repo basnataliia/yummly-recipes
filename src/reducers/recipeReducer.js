@@ -20,8 +20,8 @@ export default function recipeReducer(state = [], action) {
     case types.ACTION_TYPES.LOAD_RECIPES_SUCCESS:
       return action.payload.recipes;
 
-    case types.ACTION_TYPES.GET_RECIPE_DESC_BY_ID_SUCCESS:
-      return action.payload.recipeFullDesc
+    case types.ACTION_TYPES.LOAD_RECIPES_SEARCH_SUCCESS:
+      return action.payload.recipes;
 
     default:
       return state;

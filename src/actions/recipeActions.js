@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES_URL } from '../constants/api-url';
+import { GET_ALL_RECIPES_URL, SEARCH_RECIPE_URL } from '../constants/api-url';
 import * as types from './actionTypes';
 import $ from 'jquery';
 
@@ -43,6 +43,26 @@ export function loadRecipes() {
     $.get(GET_ALL_RECIPES_URL)
       .then(response => {
         dispatch(loadRecipesSuccess(response.matches))
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function loadRecipesSearchSuccess(recipes) {
+  return {
+    type: types.ACTION_TYPES.LOAD_RECIPES_SEARCH_SUCCESS,
+    payload: {
+      recipes
+    }
+  };
+}
+
+export function loadRecipesSearch(query) {
+  return function(dispatch) {
+    $.get(SEARCH_RECIPE_URL + query)
+      .then(response => {
+        dispatch(loadRecipesSearchSuccess(response.matches))
     }).catch(error => {
       throw(error);
     });

@@ -4,8 +4,12 @@ import {bindActionCreators} from 'redux';
 import * as recipeActions from '../actions/recipeActions';
 import RecipeList from '../components/RecipeList/RecipeList';
 import { Link } from 'react-router';
+import RecipeSearch from '../components/RecipeSearch/RecipeSearch';
+import { SEARCH_RECIPE_URL } from '../constants/api-url';
+import $ from 'jquery';
 
 class App extends Component {
+
 
   constructor(props,context) {
     super(props, context);
@@ -15,21 +19,27 @@ class App extends Component {
         {},
         this.props.recipe
       ),
+      recipes:  Object.assign({}, this.props.recipes),
       errors: {},
     };
 
     this.deleteRecipe = this.deleteRecipe.bind(this);
-
+    this.searchForRecipe = this.searchForRecipe.bind(this);
   }
 
   deleteRecipe(recipeId) {
     this.props.actions.deleteRecipe(recipeId);
   }
 
+  searchForRecipe(query) {
+    this.props.actions.loadRecipesSearch(query);
+  }
+
   render() {
     return (
         <div className="App-header">
           <h1>Recipes</h1>
+          <RecipeSearch searchForRecipe={this.searchForRecipe}/>
           <RecipeList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe}/>
           <Link to={'/add-recipe'}>Add New Recipe</Link>
         </div>
