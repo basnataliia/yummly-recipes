@@ -5,6 +5,7 @@ import {GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
+
 const RecipeItem = ({recipe, deleteRecipe}) => {
   let imgUrl = '';
   let ingredients = '';
@@ -31,9 +32,8 @@ const RecipeItem = ({recipe, deleteRecipe}) => {
   // </div>
 
   return (
-
         <GridTile
-          style={{width:'320px', margin:'20px'}}
+          style={{width:'320px', height:'320px', margin:'20px', boxShadow: '0 5px 15px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12)'}}
           key={recipe.recipeName}
           title={<Link style={{color:'white', textDecoration:'none'}} to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:false } }}>{recipe.recipeName}</Link>}
           subtitle={<span><b>{ingredients}</b></span>}
@@ -46,14 +46,12 @@ const RecipeItem = ({recipe, deleteRecipe}) => {
           >
             <img src={imgUrl} alt={recipe.recipeName}/>
             <div style={{position:'absolute', backgroundColor: 'rgba(0,0,0,0.3)', bottom:'5px', width:'125px', 'height':'30px', right:'15px'}}>
-                <Link  className="updateRecipeLink"
+                <Link className="updateRecipeLink"
                       to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:true } }}
-                      style={{position:'absolute', color:'white', bottom:'5px', right:'65px'}}
-                      ><span>Update</span></Link>
+                      style={{position:'absolute', color:'white', bottom:'5px', right:'65px'}}><span>Update</span></Link>
                 <a className="deleteRecipeLink"
                       onClick={(e) => {deleteRecipe(e, recipe.id);}}
-                      style={{position:'absolute', color:'white', bottom:'5px', right:'10px', zIndex:'1000', textDecoration:'underline'}}
-                      >Delete</a>
+                      style={{position:'absolute', color:'white', bottom:'5px', right:'10px', zIndex:'1000', textDecoration:'underline'}}>Delete</a>
             </div>
         </GridTile>
   );
