@@ -26,7 +26,9 @@ class App extends Component {
     this.searchForRecipe = this.searchForRecipe.bind(this);
   }
 
-  deleteRecipe(recipeId) {
+  deleteRecipe(e, recipeId) {
+     e.preventDefault();
+     e.stopPropagation();
     this.props.actions.deleteRecipe(recipeId);
   }
 
@@ -36,7 +38,7 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App-header">
+        <div className="App-header" style={{padding:'30px'}}>
           <h1>Recipes</h1>
           <RecipeSearch searchForRecipe={this.searchForRecipe}/>
           <RecipeList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe}/>

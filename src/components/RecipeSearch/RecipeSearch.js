@@ -5,7 +5,7 @@ export default function RecipeSearch({
 }) {
   let recipeQuery = '';
   return (
-  	<div className="Recipe-search">
+  	<div className="Recipe-search" style={{textAlign:'center'}}>
        <input onChange={(e) => {
        	 recipeQuery = e.target.value;
        	 searchForRecipe(recipeQuery);
