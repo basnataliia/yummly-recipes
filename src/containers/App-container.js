@@ -9,7 +9,6 @@ import RecipeSearch from '../components/RecipeSearch/RecipeSearch';
 
 class App extends Component {
 
-
   constructor(props,context) {
     super(props, context);
 
@@ -38,7 +37,7 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App-header" style={{padding:'30px'}}>
+        <div className="App-header">
           <h1>Recipes</h1>
           <RecipeSearch searchForRecipe={this.searchForRecipe}/>
           <RecipeList recipes={this.props.recipes} deleteRecipe={this.deleteRecipe}/>

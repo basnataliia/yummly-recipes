@@ -83,7 +83,7 @@ class ManageRecipeContainer extends React.Component {
   render() {
     if(this.props.location.state.updateRecipeView) {
       return (
-        <div style={{padding:'20px'}}>
+        <div>
           <h2>Update recipe</h2>
           <RecipeForm
             allFlavours={this.props.flavours}

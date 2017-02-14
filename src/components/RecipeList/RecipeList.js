@@ -1,12 +1,12 @@
 import React, {PropTypes} from 'react';
 import RecipeItem from '../RecipeItem/RecipeItem';
-import {GridList, GridTile} from 'material-ui/GridList';
+import {GridList} from 'material-ui/GridList';
+
 const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    // padding:'20px 255px',
     padding:'20px 0px',
   },
     gridList: {
