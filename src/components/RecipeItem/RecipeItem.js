@@ -1,11 +1,9 @@
 import React, {PropTypes} from 'react';
 import { Link } from 'react-router';
 import './RecipeItem.css';
-
 import {GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import Paper from 'material-ui/Paper';
 
 const RecipeItem = ({recipe, deleteRecipe}) => {
   let imgUrl = '';
@@ -24,14 +22,18 @@ const RecipeItem = ({recipe, deleteRecipe}) => {
     ingredients = recipe.ingredients;
     ingredients = ingredients.join(', ');
   }
+
+  // <div style={{width:'100px', height:'100px', backgroundColor:'rgba(0,0,0,0.3)', border:'1px solid black'}}>
+  //      <Link to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:false } }}>{recipe.recipeName}</Link>
+  //       <img src={imgUrl} alt={recipe.recipeName} />
+  //       <Link className="updateRecipeLink" to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:true } }}><span>Update</span></Link>
+  //       <span className="deleteRecipeLink" onClick={() => {deleteRecipe(recipe.id);}}>Delete</span>
+  // </div>
+
   return (
-    // <div>
-    //       <Link to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:false } }}>{recipe.recipeName}</Link>
-    //       <img src={imgUrl} alt={recipe.recipeName} />
-    //       <Link className="updateRecipeLink" to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:true } }}><span>Update</span></Link>
-    //       <span className="deleteRecipeLink" onClick={() => {deleteRecipe(recipe.id);}}>Delete</span>
-    // </div>
+
         <GridTile
+          style={{width:'320px', margin:'20px'}}
           key={recipe.recipeName}
           title={<Link style={{color:'white', textDecoration:'none'}} to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:false } }}>{recipe.recipeName}</Link>}
           subtitle={<span><b>{ingredients}</b></span>}
@@ -42,8 +44,6 @@ const RecipeItem = ({recipe, deleteRecipe}) => {
           cols={recipe.recipeName ? 2 : 1}
           rows={recipe.recipeName ? 2 : 1}
           >
-          {/* <Link to={{ pathname: '/recipes/' + recipe.id, state: { updateRecipeView:false } }}> */}
-          <Paper zDepth={5}>
             <img src={imgUrl} alt={recipe.recipeName}/>
             <div style={{position:'absolute', backgroundColor: 'rgba(0,0,0,0.3)', bottom:'5px', width:'125px', 'height':'30px', right:'15px'}}>
                 <Link  className="updateRecipeLink"
@@ -55,10 +55,7 @@ const RecipeItem = ({recipe, deleteRecipe}) => {
                       style={{position:'absolute', color:'white', bottom:'5px', right:'10px', zIndex:'1000', textDecoration:'underline'}}
                       >Delete</a>
             </div>
-          </Paper>
-        {/* </Link> */}
         </GridTile>
-
   );
 };
 

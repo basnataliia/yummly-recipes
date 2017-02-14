@@ -6,7 +6,9 @@ const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding:'20px 0px',
   },
     gridList: {
@@ -16,17 +18,17 @@ const styles = {
 
 const RecipeList = ({recipes, deleteRecipe}) => {
   return (
-    <div style={styles.root}>
-    <GridList
+    <div style={{display:'flex', flexWrap:'wrap', justifyContent: 'center', alignItems: 'center'}}>
+    {/* <GridList
       style={styles.gridList}
       cols={3}
       cellHeight={200}
       padding={20}
-      >
+      > */}
       {recipes.map(recipe =>
         <RecipeItem key={recipe.id} recipe={recipe} deleteRecipe={deleteRecipe} />
       )}
-    </GridList>
+    {/* </GridList> */}
   </div>
   );
 };
